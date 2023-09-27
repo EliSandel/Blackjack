@@ -49,10 +49,14 @@ def game():
         elif continue_game == 'y':
             player_card = random.choice(cards)
             cards.remove(player_card)
-            if (sum(player_hand)+11>21) and player_card == 11:
+            if (sum(player_hand)+11>21) and player_card == 11 and 11 not in player_hand and 1 not in player_hand:
                 player_hand.append(1)
             else:
                 player_hand.append(player_card)
+            
+            if sum(player_hand) > 21 and 11 in player_hand and 1 not in player_hand:
+                player_hand.remove(11)
+                player_hand.append(1)
             
             if sum(player_hand)>21:
                 print(f"Your final hand: {player_hand}, final score: {sum(player_hand)}")
